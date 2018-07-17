@@ -1,0 +1,21 @@
+---
+title: "R Markdown and Leaflet"
+author: "Jie Li"
+date: "July 17, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+```{r}
+library(leaflet)
+my_map_nowhere<-leaflet()%>%addTiles() %>% addMarkers(lat=40,lng=-40,popup="nowhere")
+
+set.seed(233)
+df<-data.frame(lat=runif(2000,min=-19,max=39.5),lng=runif(2000,min=-106.6,max=76.5))
+
+df%>%leaflet()%>%addTiles()%>%addMarkers(clusterOptions = markerClusterOptions())
+```
